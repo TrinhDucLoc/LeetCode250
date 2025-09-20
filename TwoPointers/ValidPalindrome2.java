@@ -1,5 +1,5 @@
 public class ValidPalindrome2 {
-  public boolean validaPalindrome(String s) {
+  public boolean validPalindrome(String s) {
     int l = 0, r = s.length() - 1;
     while (l < r) {
       if (s.charAt(l) != s.charAt(r)) {
@@ -16,6 +16,8 @@ public class ValidPalindrome2 {
       if (s.charAt(l) != s.charAt(r)) {
         return false;
       }
+      l++;
+      r--;
     }
     return true;
   }
