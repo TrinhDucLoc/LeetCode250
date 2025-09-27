@@ -1,13 +1,14 @@
-import java.util.Arrays;
+package main.java;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class main {
+public class evenNumberBitwiseORs {
 
   public static void main(String[] args) {
 //    System.out.println(convertBinaryToDecimal(110));
-    System.out.println(evenNumberBitwiseORs(new int[]{100,64,32,16,8,4,2}));
+    System.out.println(evenNumberBitwiseORs(new int[]{100, 64, 32, 16, 8, 4, 2}));
 //    System.out.println(convertNumberToBinary(6, 4));
 //    System.out.println(convertBinaryToDecimal(110));
   }
