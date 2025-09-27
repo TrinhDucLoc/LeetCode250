@@ -119,4 +119,14 @@ public class evenNumberBitwiseORs {
     }
     return bits <= 4 ? 4 : 8;
   }
+
+  public static int evenNumberBitwiseORs2(int[] nums) {
+    int result = 0;
+    for (int num : nums) {
+      if (num % 2 == 0) {
+        result |= num;
+      }
+    }
+    return result;
+  }
 }
