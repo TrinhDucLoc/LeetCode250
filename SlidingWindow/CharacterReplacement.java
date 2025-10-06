@@ -32,3 +32,14 @@ public class CharacterReplacement {
     return res;
   }
 }
+
+/*
+Window: "AA"     → count=2, need 0 replacements → valid, length=2
+Window: "AAB"    → count=2, need 1 replacement  → valid, length=3
+Window: "AABA"   → count=3, need 1 replacement  → valid, length=4
+Window: "AABAB"  → count=3, need 2 replacements → invalid! (2 > k)
+  Shrink: "ABAB" → count=2, need 2 replacements → invalid!
+  Shrink: "BAB"  → count=1, need 2 replacements → invalid!
+  Shrink: "AB"   → count=1, need 1 replacement  → valid, length=2
+...
+ */
