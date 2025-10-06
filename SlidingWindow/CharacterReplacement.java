@@ -3,8 +3,11 @@ import java.util.Set;
 
 public class CharacterReplacement {
 
-  public int characterReplacement(String s, int k) {
-    int res = 0;
+  public static void main(String[] args) {
+    System.out.println(characterReplacement("ABBB", 2));
+  }
+
+  public static int characterReplacement(String s, int k) {
     Set<Character> hashSet = new HashSet<>();
 
     for (char c : s.toCharArray()) {
@@ -13,16 +16,23 @@ public class CharacterReplacement {
       }
     }
 
-    for (char c : hashSet) {
-      int count = 0, l = 0;
+    if (hashSet.size() == 1) {
+      return s.length();
+    }
+
+    int res = 0;
+    for (Character c : hashSet) {
+      int countDuplicate = 0;
+      int l = 0;
+
       for (int r = 0; r < s.length(); r++) {
         if (s.charAt(r) == c) {
-          count++;
+          countDuplicate++;
         }
 
-        while ((r - l + 1) - count > k) {
+        while ((r - l + 1) - countDuplicate > k) {
           if (s.charAt(l) == c) {
-            count--;
+            countDuplicate--;
           }
           l++;
         }
@@ -42,4 +52,21 @@ Window: "AABAB"  → count=3, need 2 replacements → invalid! (2 > k)
   Shrink: "BAB"  → count=1, need 2 replacements → invalid!
   Shrink: "AB"   → count=1, need 1 replacement  → valid, length=2
 ...
+
+Analyst:
+Input: "AAABABB", k = 1
+Output: 5
+
+Solution:
+1/ Using brute force:
+
+
+2/ Using sliding window
+- Window with: (r - l + 1)
+- Count duplicate with c
+- K is max replace character => replaceInWindow = window - countDuplicate => res = Math.max(countDuplicate, res);
+- If replaceInWindow > k => move left and update count if charAt(l) == c
+
+Time complexity: O(N)
+Space complexity: O(N)
  */
