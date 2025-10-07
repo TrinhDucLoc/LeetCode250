@@ -4,11 +4,13 @@ import java.util.Set;
 public class CharacterReplacement {
 
   public static void main(String[] args) {
-    System.out.println(characterReplacement("ABBB", 2));
+    System.out.println(characterReplacement("AABABBA", 1));
   }
 
+  // "AAABABB", k = 1 -> 5
   public static int characterReplacement(String s, int k) {
     Set<Character> hashSet = new HashSet<>();
+    int res = 0;
 
     for (char c : s.toCharArray()) {
       if (!hashSet.contains(c)) {
@@ -16,27 +18,22 @@ public class CharacterReplacement {
       }
     }
 
-    if (hashSet.size() == 1) {
-      return s.length();
-    }
-
-    int res = 0;
     for (Character c : hashSet) {
-      int countDuplicate = 0;
-      int l = 0;
-
+      int l = 0, countDuplicate = 0, windowSize = 0;
       for (int r = 0; r < s.length(); r++) {
+        windowSize = r - l + 1;
         if (s.charAt(r) == c) {
           countDuplicate++;
         }
 
-        while ((r - l + 1) - countDuplicate > k) {
+        while (l < s.length() && (windowSize - countDuplicate > k)) {
           if (s.charAt(l) == c) {
             countDuplicate--;
           }
           l++;
+          windowSize = r - l + 1;
         }
-        res = Math.max(res, r - l + 1);
+        res = Math.max(res, windowSize);
       }
     }
     return res;
